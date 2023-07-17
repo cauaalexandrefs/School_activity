@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Aluno,Curso,Cidade
+from .models import Aluno,Cidade
+from curso.models import Curso
 from .forms import AlunoForm
 
 def aluno_editar(request,id):
@@ -29,6 +30,7 @@ def aluno_criar(request):
         if form.is_valid():
             form.save()
             form = AlunoForm()
+            return redirect('aluno_listar')
     else:
         form = AlunoForm()
 
